@@ -1,17 +1,16 @@
+# Cipher "Solitaire"
+# 2 cards + 2 Jockers
+# "2" - Jocker A
+# "3" - Joker B
+
 from itertools import permutations
+
 def writefile(a, file):
     strf = ""
     for el in a:
         strf += str(el) + " "
     strf += "\t"
     file.write(strf)
-
-def F2(lst):
-    index = lst.index(3)
-    new_index = index + 2
-    if new_index > 3:
-        new_index -= 3
-    lst.insert(new_index, lst.pop(index))
 
 def F1(lst):
     index = lst.index(2)
@@ -20,14 +19,12 @@ def F1(lst):
         new_index -= 3
     lst.insert(new_index, lst.pop(index))
 
-def F4(lst):
-    count = lst[3]
-    if count == 3 or count == 0:
-        return
-    if count == 1:
-        lst.insert(2, lst.pop(0))
-    if count == 2:
-        lst.insert(0, lst.pop(2))
+def F2(lst):
+    index = lst.index(3)
+    new_index = index + 2
+    if new_index > 3:
+        new_index -= 3
+    lst.insert(new_index, lst.pop(index))
 
 def F3(lst):
     res = []
@@ -58,11 +55,18 @@ def F3(lst):
     for c in range(4):
         lst[c] = res[c]
 
+def F4(lst):
+    count = lst[3]
+    if count == 3 or count == 0:
+        return
+    if count == 1:
+        lst.insert(2, lst.pop(0))
+    if count == 2:
+        lst.insert(0, lst.pop(2))
+
 a = [0, 1, 2, 3]
 set_a = permutations(a)
 
-#for i in set_a:
-    #print(list(i))
 
 crypt_set = [a.copy()]
 file = open("result.txt", 'w')
@@ -92,4 +96,3 @@ for i in range(24):
         crypt_set.append(a.copy())
 
 file.close()
-
